@@ -1,0 +1,598 @@
+﻿/* 
+    SYNTAX GUIDE: 
+    .cp- : Concrete containment element
+    .c-  : Content element
+    .v-  : Variable style, also known as a utility
+    .has-: Element with a permanent conditinal rule
+    .is  : Element with a conditional value - typically toggled by javascript
+    .ui- : Themed element
+    .js- : Element solely targeted by javascript
+*/
+
+:root {
+    --cp-color-light-blue: #26a4d5;
+    --cp-color-light-blue-opacity-0_1: rgba(38, 164, 213, 0.1);
+    --cp-color-light-blue-opacity-0_2: rgba(38, 164, 213, 0.2);
+    --cp-color-light-blue-opacity-0_3: rgba(38, 164, 213, 0.3);
+    --cp-color-light-blue-opacity-0_4: rgba(38, 164, 213, 0.4);
+    --cp-color-light-blue-opacity-0_5: rgba(38, 164, 213, 0.5);
+    --cp-color-dark-blue: #1d3869;
+    --cp-color-dark-blue-opacity-0_1: rgba(29, 56, 105, 0.1);
+    --cp-color-dark-blue-opacity-0_2: rgba(29, 56, 105, 0.2);
+    --cp-color-dark-blue-opacity-0_3: rgba(29, 56, 105, 0.3);
+    --cp-color-dark-blue-opacity-0_4: rgba(29, 56, 105, 0.4);
+    --cp-color-dark-blue-opacity-0_5: rgba(29, 56, 105, 0.5);
+    --cp-color-light-gray: #ddd;
+    --cp-color-mid-gray: #ababab;
+    --cp-color-dark-gray: #444;
+    --cp-color-red: red;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+a, a:link {
+    color: black;
+}
+
+    a:visited {
+        color: purple;
+    }
+
+h1, h2, h3, h4, h5, h6, ul, ol, dl, p, figure, figcaption, address {
+    margin: 0;
+    padding: 0;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.h1 {
+    font-size: 32px;
+}
+
+.h2 {
+    font-size: 24px;
+}
+
+.c-heading {
+    border-bottom: 1px solid var(--cp-color-light-gray);
+}
+
+address {
+    font-style: normal;
+}
+
+b, em, strong {
+    font-weight: 700;
+}
+
+p {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+/* DISPLAY STYLES */
+.c-block {
+    display: block;
+}
+
+.c-inline-block {
+    display: inline-block;
+}
+
+    .c-inline-block.va-baseline,
+    .c-va-baseline {
+        vertical-align: baseline;
+    }
+
+    .c-inline-block.va-bottom,
+    .c-va-bottom {
+        vertical-align: bottom;
+    }
+
+    .c-inline-block.va-middle,
+    .c-va-middle {
+        vertical-align: middle;
+    }
+
+    .c-inline-block.va-top,
+    .c-va-top {
+        vertical-align: top;
+    }
+
+.c-table {
+    display: table;
+}
+
+.c-table-row {
+    display: table-row;
+}
+
+.c-table-cell {
+    display: table-cell;
+}
+
+/* VISIBILITY STYLES */
+.c-invisible {
+    visibility: hidden;
+}
+
+.c-visible {
+    visibility: visible;
+}
+
+/* FLEX STYLES */
+.c-flex {
+    display: flex;
+}
+
+    .c-flex.c-wrap,
+    .c-wrap {
+        flex-wrap: wrap;
+    }
+
+.c-inline-flex {
+    display: inline-flex;
+}
+
+/* MAIN AND LAYOUT */
+.cp-main {
+    position: relative;
+}
+
+.cp-container {
+    position: relative;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.cp-wrapper {
+    position: relative;
+    padding: 12px;
+}
+
+.cp-section {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.cp-section-header {
+    margin-bottom: 12px;
+}
+
+    .cp-section-header .c-heading {
+        padding-bottom: 6px;
+    }
+
+/* APP HEADER */
+.cp-app-header {
+    position: sticky;
+    top: 0px;
+    background-color: white;
+    border-bottom: 1px solid var(--cp-color-light-gray);
+    z-index: 100;
+}
+
+/* APP APPBAR */
+.cp-appbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 12px;
+    border-bottom: 1px solid var(--cp-color-light-gray);
+}
+
+    .cp-appbar .cp-app-home {
+        display: flex;
+        align-items: center;
+        border: 1px solid var(--cp-color-dark-blue);
+    }
+
+    .cp-appbar .cp-app-logo {
+        height: 24px;
+        background-color: var(--cp-color-dark-gray);
+    }
+
+    .cp-appbar .cp-app-title {
+        margin-left: 12px;
+        margin-right: 12px;
+        font-weight: 700;
+    }
+
+    .cp-appbar .cp-app-identity {
+        width: 200px;
+        height: 24px;
+        border: 1px solid violet;
+    }
+
+/* APP NAV LINKS */
+.c-nav {
+    display: flex;
+}
+
+    .c-nav li {
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+        font-size: 14px;
+    }
+
+        .c-nav li a {
+            position: relative;
+            display: block;
+            padding: 12px;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+        }
+
+            .c-nav li a:hover {
+                border-bottom-color: var(--cp-color-dark-blue);
+            }
+
+.c-dropdown {
+    position: relative;
+}
+
+    .c-dropdown > summary {
+        list-style: none;
+        outline: none;
+    }
+
+        .c-dropdown > summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .c-dropdown > summary::after {
+            content: '';
+            display: inline-block;
+            vertical-align: middle;
+            width: 18px;
+            height: 18px;
+            margin-left: 12px;
+            margin-right: 6px;
+            background-color: #ddd;
+            pointer-events: inherit;
+        }
+
+    .c-dropdown > .c-dropdown-menu {
+        position: absolute;
+        left: -12px;
+        margin-top: 12px;
+        background-color: white;
+        box-shadow: 0 12px 12px 0 var(--cp-color-light-gray);
+        z-index: 1;
+    }
+
+        .c-dropdown > .c-dropdown-menu ul li {
+            white-space: nowrap;
+        }
+
+            .c-dropdown > .c-dropdown-menu ul li a {
+                display: block;
+            }
+
+                .c-dropdown > .c-dropdown-menu ul li a:hover {
+                    background-color: var(--cp-color-light-gray);
+                    border-bottom-color: transparent;
+                }
+
+/* APP TOOLBAR */
+.cp-toolbar {
+    display: flex;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.cp-toolbar-links {
+    display: flex;
+}
+
+/* APP CONTENT */
+.cp-content {
+    position: relative;
+    display: flex;
+}
+
+/* APP SIDEBAR */
+.cp-sidebar {
+    flex-shrink: 0;
+    flex-basis: 250px;
+    border-right: 1px solid var(--cp-color-light-gray);
+}
+
+.cp-sidebar-filter {
+    padding: 12px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--cp-color-light-gray);
+}
+
+.cp-sidebar-container {
+    position: relative;
+}
+
+.cp-sidebar-links {
+    position: relative;
+}
+
+    .cp-sidebar-links li {
+        display: flex;
+        list-style-type: none;
+    }
+
+/* APP CANVAS */
+.cp-canvas {
+    position: relative;
+    flex-grow: 1;
+}
+
+/* APP MENUBAR */
+.cp-menubar {
+    display: flex;
+    flex-grow: 1;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-bottom: 1px solid var(--cp-color-light-gray);
+}
+
+.cp-menubar-links {
+    display: flex;
+}
+
+/* BUTTONS */
+.c-button,
+.c-link {
+    outline: none;
+}
+
+/* ANCHORS */
+.c-link {
+    position: relative;
+    box-shadow: inset 0 -1rem 12px 0 orange;
+}
+
+/* TABLES */
+.cp-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .cp-table.c-collapse {
+        border-collapse: collapse;
+    }
+
+/* FORMS */
+.cp-form {
+    position: relative;
+}
+
+    .cp-form.c-login {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+/* FORM LAYOUT */
+.cp-fieldset {
+    border: 1px solid green;
+}
+
+    .cp-fieldset > legend {
+        background-color: red;
+    }
+
+.c-field-row {
+    display: flex;
+    margin-left: -12px;
+    margin-right: -12px;
+    border: 1px solid red;
+}
+
+.c-field-group {
+    padding: 12px;
+}
+
+.cp-field {
+    padding: 6px 12px;
+    border: 1px solid #ababab;
+    outline: none;
+}
+
+    .cp-field:focus {
+        border-color: var(--cp-color-dark-blue);
+    }
+
+.c-input,
+.c-select,
+.c-textarea,
+.c-email,
+.c-password,
+.c-phone {
+    color: inherit;
+}
+
+.cp-label {
+    position: relative;
+}
+
+.c-field-group .cp-label {
+    font-weight: 700;
+}
+
+.c-field-group.u-vertical .cp-label {
+    display: block;
+}
+
+/* WIDTH STYLES */
+.c-col-1 {
+    flex-basis: 100%;
+    width: 100%;
+}
+
+.c-col-2 {
+    flex-basis: 50%;
+    width: 50%;
+}
+
+.c-w-5 {
+    flex-basis: 5%;
+    width: 5%;
+}
+
+.c-w-20 {
+    flex-basis: 20%;
+    width: 20%;
+}
+
+.c-w-50 {
+    flex-basis: 50%;
+    width: 50%;
+}
+
+
+/* FONT STYLES */
+.font-size-14 {
+    font-size: 14px;
+}
+
+.font-size-24 {
+    font-size: 24px;
+}
+
+.font-size-30 {
+    font-size: 30px;
+}
+
+.font-size-48 {
+    font-size: 48px;
+}
+
+/* TEXT STYLES */
+.text-color-red {
+    color: red;
+}
+
+.text-color-blue {
+    color: var(--cp-color-dark-blue);
+}
+
+/* CENTERED STYLES */
+[class*='c-center-'],
+.c-center {
+    margin: 0 auto;
+}
+
+.c-center-1600 {
+    max-width: 1600px;
+}
+
+.c-center-1200 {
+    max-width: 1200px;
+}
+
+.c-center-1024 {
+    max-width: 1024px;
+}
+
+.c-center-800 {
+    max-width: 800px;
+}
+
+.c-center-600 {
+    max-width: 600px;
+}
+
+.c-center-500 {
+    max-width: 500px;
+}
+
+.c-center-400 {
+    max-width: 500px;
+}
+
+/* NOICES */
+.cp-notice {
+    display: block;
+    position: relative;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding: 12px;
+    border: 1px solid var(--cp-color-light-gray);
+    border-left-width: 3px;
+}
+
+    .cp-notice.c-thin {
+        padding: 6px 12px;
+    }
+
+        .cp-notice.c-thin p {
+            margin-top: 6px;
+            margin-bottom: 6px;
+        }
+
+    .cp-notice .cp-notice-title {
+        margin-top: 0;
+        margin-bottom: 12px;
+    }
+
+        .cp-notice .cp-notice-title > p {
+            margin-top: 0;
+        }
+
+    .cp-notice.c-info {
+        background-color: var(--cp-color-light-blue-opacity-0_1);
+        border-color: var(--cp-color-light-blue);
+    }
+
+    .cp-notice.c-success {
+        border-color: #1a9b1a;
+    }
+
+    .cp-notice.c-caution {
+        border-color: peru;
+    }
+
+    .cp-notice.c-warning {
+        border-color: red;
+    }
+
+/* MEDIA QUERIES */
+@media (max-width: 1600px) {
+}
+
+@media (max-width: 1366px) {
+}
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 1024px) {
+}
+
+@media (max-width: 900px) {
+}
+
+@media (max-width: 768px) {
+}
+
+@media (max-width: 667px) {
+}
+
+@media (max-width: 540px) {
+}
+
+@media (max-width: 414px) {
+}
